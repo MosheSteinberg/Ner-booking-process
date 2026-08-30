@@ -15,7 +15,7 @@ import traceback
 import re
 
 def FindMIfFloat(x):
-    matchstring = '\d{1,2}([:.]\d\d)?'
+    matchstring = r'\d{1,2}([:.]\d\d)?'
     find_time = re.search(matchstring, x)
     if find_time is None:
         return x
@@ -119,7 +119,7 @@ def run_process():
                         ListOfAttendees_Unordered = list_of_attendees_name
                     else:
                         # Filter the attendees and apply a header to the column
-                        ListOfAttendees_Unordered = list_of_attendees_name_no_duplicates.append(extra_names).drop_duplicates()
+                        ListOfAttendees_Unordered = pd.concat([list_of_attendees_name_no_duplicates, extra_names]).drop_duplicates()
                     # Order the attendees alphabetically
                     ListOfAttendees_Ordered = ListOfAttendees_Unordered.sort_values(key=lambda x:x.str.lower())
 
@@ -132,7 +132,7 @@ def run_process():
                         start_row = i * 40
                         end_row = min((i+1) * 40, number_of_attendees)
                         # Write the list to Excel in the 3rd row
-                        ListOfAttendees_Ordered[start_row:end_row].to_excel(writer, sheet_name, index=False, startcol=number+i, startrow=3, header=False)
+                        ListOfAttendees_Ordered[start_row:end_row].to_excel(writer, sheet_name=sheet_name, index=False, startcol=number+i, startrow=3, header=False)
                     # Select the column and set its width
                     worksheet = writer.sheets[sheet_name]
 

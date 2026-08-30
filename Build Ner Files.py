@@ -26,7 +26,7 @@ class MyWindow():
                                             title='Select a file',
                                             filetypes=(('CSV files', '*.csv*'),))
         self.csv_filepath_var.set(filename)
-        data = pd.read_csv(filename, error_bad_lines=False)
+        data = pd.read_csv(filename, on_bad_lines='skip')
         self.options = data.columns.values
 
         self.column_selection_row = self.csv_row + 1

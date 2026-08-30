@@ -1,0 +1,13 @@
+[project]
+name = "ner-booking-process"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "numpy>=2.0",
+    "pandas>=2.2",
+    "six>=1.17",
+    "tkcalendar>=1.6.1",
+    "xlsxwriter>=3.2",
+]
